@@ -52,7 +52,7 @@ class Missions extends Component {
                         {
                             mission.payload_ids.map((payload, index) => (
                                 <ListGroupItem key={index}>
-                                    <Card.Link href={`/payload/${payload}`}>
+                                    <Card.Link href={`#/payload/${payload}`}>
                                         {payload}
                                     </Card.Link>
                                 </ListGroupItem>

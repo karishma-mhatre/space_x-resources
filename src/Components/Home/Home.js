@@ -23,7 +23,7 @@ class Home extends Component {
                             <Card.Text>
                                 Get information about all the launchpads of SpaceX.
                             </Card.Text>
-                            <Button variant="info" href="/launchpads">Get Launchpads</Button>
+                            <Button variant="info" href="#/launchpads">Get Launchpads</Button>
                         </Card.Body>
                     </Card>
                     <Card>
@@ -35,7 +35,7 @@ class Home extends Component {
                             <Card.Text>
                                 Get information about all the missions of SpaceX including the payloads of each mission.
                             </Card.Text>
-                            <Button variant="info" href="/missions">Get Missions</Button>
+                            <Button variant="info" href="#/missions">Get Missions</Button>
                         </Card.Body>
                     </Card>
                 </CardDeck>
