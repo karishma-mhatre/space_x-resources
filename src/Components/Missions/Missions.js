@@ -6,8 +6,6 @@ import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
-import Col from 'react-bootstrap/Col';
-
 import axios from 'axios';
 
 class Missions extends Component {
@@ -19,7 +17,6 @@ class Missions extends Component {
 
     componentDidMount = () => {
         axios.get("https://api.spacexdata.com/v3/missions").then(response => {
-            console.log(response);
             this.setState({
                 isLoading: false,
                 missions: response.data
@@ -33,14 +30,14 @@ class Missions extends Component {
     }
 
     render() {
-        let container;
+        let content
         if (this.state.isLoading) {
-            container = <Alert>Loading</Alert>
+            content = <Alert variant="dark">Loading...</Alert>
         } else if (this.state.isError) {
-            container = <Alert>Sorry. Could not load.</Alert>
+            content = <Alert variant="danger">Sorry. Could not load.</Alert>
         }
         else {
-            container = this.state.missions.map((mission, index) =>
+            let missions = this.state.missions.map((mission, index) =>
                 <Card key={index}>
                     <Card.Header>
                         {mission.mission_name}
@@ -52,28 +49,31 @@ class Missions extends Component {
                     </Card.Body>
                     <ListGroup>
                         <ListGroupItem>Payloads</ListGroupItem>
-                            {
-                                mission.payload_ids.map((payload) => (
-                                    <ListGroupItem>
-                                        <Card.Link href={`/payload/${payload}`}>
-                                            {payload}
-                                        </Card.Link>
-                                    </ListGroupItem>
-                                ))
-                            }
-                        </ListGroup>
-                    </Card>
+                        {
+                            mission.payload_ids.map((payload, index) => (
+                                <ListGroupItem key={index}>
+                                    <Card.Link href={`/payload/${payload}`}>
+                                        {payload}
+                                    </Card.Link>
+                                </ListGroupItem>
+                            ))
+                        }
+                    </ListGroup>
+                </Card>
             );
+            content = <CardColumns>
+                    {
+                        missions
+                    }
+                </CardColumns>
         }
         return (
             <>
                 <Header title="Missions"></Header>
                 <Container>
-                    <CardColumns>
                         {
-                            container
+                            content
                         }
-                    </CardColumns>
                 </Container>
             </>
         )

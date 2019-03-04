@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
+import './header.css';
 
 class Header extends Component {
     render() {
-        console.log("payload rendered");
         return (
-            <>
-            <h2>{this.props.title}</h2>
-            </>
+            <div className="header">
+            <h2 className="header__title">{this.props.title}</h2>
+            </div>
         )
     }
 }

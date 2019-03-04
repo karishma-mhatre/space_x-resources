@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Missions  from './Components/Missions/Missions';
 import LaunchPads from './Components/LaunchPads/LaunchPads';
 import Payload from './Components/Payload/Payload';
@@ -11,12 +11,13 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-        <Route path="/" exact Component={Home}></Route>
+        <Switch>
+        <Route path="/" exact component={Home}></Route>
         <Route path="/missions" component={Missions}/>
         <Route path="/launchpads" component={LaunchPads}/>
         <Route path="/payload/:id" component={Payload}/>
-        </div>
+        <Route path="*" component={Home}></Route>
+        </Switch>
       </Router>
     );
   }
